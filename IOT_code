@@ -1,0 +1,67 @@
+// Define Blynk template ID, name, and authentication token
+#define BLYNK_TEMPLATE_ID "TMPL3tR86ljq_"
+#define BLYNK_TEMPLATE_NAME "Lighting control"
+#define BLYNK_AUTH_TOKEN "tgHrQTgkiafBZIdpU0U367_tXsFCujoS"
+
+// Comment this out to disable prints and save space
+#define BLYNK_PRINT Serial
+
+// Include required libraries
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <BlynkSimpleEsp32.h>
+
+// Set Blynk authentication token, WiFi SSID, and password
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = "Lighting Control";
+char pass[] = "PMeghana@0303";
+
+// Define setup function
+void setup() {
+  // Set pin modes for output
+  pinMode(14, OUTPUT);
+  pinMode(27, OUTPUT);
+  pinMode(26, OUTPUT);
+  pinMode(25, OUTPUT);
+  
+  // Initialize Blynk with authentication token, SSID, and password
+  Blynk.begin(auth, ssid, pass);
+}
+
+// Blynk virtual pin write handler for V0
+BLYNK_WRITE(V0) {
+  // Read value from the virtual pin
+  int pinValue = param.asInt();
+  // Write the value to the specified pin
+  digitalWrite(14, pinValue);
+}
+
+// Blynk virtual pin write handler for V1
+BLYNK_WRITE(V1) {
+  // Read value from the virtual pin
+  int pinValue = param.asInt();
+  // Write the value to the specified pin
+  digitalWrite(27, pinValue);
+}
+
+// Blynk virtual pin write handler for V2
+BLYNK_WRITE(V2) {
+  // Read value from the virtual pin
+  int pinValue = param.asInt();
+  // Write the value to the specified pin
+  digitalWrite(26, pinValue);
+}
+
+// Blynk virtual pin write handler for V3
+BLYNK_WRITE(V3) {
+  // Read value from the virtual pin
+  int pinValue = param.asInt();
+  // Write the value to the specified pin
+  digitalWrite(25, pinValue);
+}
+
+// Main loop function
+void loop() {
+  // Run Blynk tasks
+  Blynk.run();
+}
